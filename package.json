@@ -1,0 +1,8 @@
+{
+  "name": "overtime",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:HallexCosta/overtime.git",
+  "author": "HallexCosta <hallex.costa@hotmail.com>",
+  "license": "MIT"
+}
