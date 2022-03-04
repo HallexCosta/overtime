@@ -42,4 +42,4 @@ logger.info(`> Starting application: ${APP_NAME}`)
 
 http
   .createServer(handlerRequest)
-  .listen(3333, handlerStart)
+  .listen(PORT, handlerStart)
