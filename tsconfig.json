@@ -31,6 +31,7 @@
       "@common/*": ["./src/common/*.ts"],
       "@common/configs": ["./src/common/configs/index.ts"],
       "@tests/fakes/*": ["./__tests__/fakes/*.ts"],
+      "@tests/unit/*": ["./__tests__/unit/*.ts"],
       "@tests/util": ["./__tests__/util.ts"],
       "@root/*": ["./*.ts", "./*.js", "./*.json"],
       "@app": ["./src/app.ts"]
