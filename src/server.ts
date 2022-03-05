@@ -1,12 +1,13 @@
 // localhost:333/extra-works
 // localhost:333/users?id={user_id}
+import 'dotenv/config'
 import http from 'http'
 import { pipeline } from 'stream/promises'
 
 import logger from '@common/logger'
 
 const APP_NAME = process.env.APP_NAME
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3333
 
 const handlerStart = () => console.log(
   `> Listening server on port ${PORT}`
