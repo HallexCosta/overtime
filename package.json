@@ -23,7 +23,7 @@
   "_moduleAliasIgnoreWarning": true,
   "_moduleAliases": {
     "@entities": "./dist/entities",
-    "@controllers": "./dist/controllers",
+    /*"@controllers": "./dist/controllers",*/
     "@common": "./dist/common"
   },
   "devDependencies": {
