@@ -17,6 +17,7 @@
     "start:production": "cross-env NODE_ENV=production node dist/server.js",
     "start:development:watch": "cross-env NODE_ENV=development nodemon -L",
     "test:unit": "cross-env NODE_ENV=test mocha --config .mocharc.unit.js",
+    "test:integration": "cross-env NODE_ENV=test echo 'Nothing tests'",
     "postbuild": "link-module-alias",
     "prebuild": "command -v link-module-alias && link-module-alias clean || true"
   },
