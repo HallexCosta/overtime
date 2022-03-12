@@ -28,6 +28,10 @@ export function propertyHasValue<T extends {}>(object: T, propName: string) {
   return true
 }
 
+export function isNotNullOrUndefined(value: any) {
+  return value !== null && value !== undefined
+}
+
 // should test instanceOf check object is instance of class
 {
   const Class = class {}

@@ -26,6 +26,7 @@
       "@middlewares/*": ["./src/middlewares/*.ts"],
       "@entities/*": ["./src/entities/*.ts"],
       "@repositories/*": ["./src/repositories/*.ts"],
+      "@core/*": ["./src/core/*.ts"],
       /*"@controllers/*": ["./src/controllers/*.ts"],*/
       "@common/*": ["./src/common/*.ts"],
       "@common/configs": ["./src/common/configs/index.ts"],
