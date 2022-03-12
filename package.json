@@ -24,6 +24,7 @@
   "_moduleAliasIgnoreWarning": true,
   "_moduleAliases": {
     "@entities": "./dist/entities",
+    "@core": "./dist/core",
     "@common": "./dist/common"
   },
   "devDependencies": {
