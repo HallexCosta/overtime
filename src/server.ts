@@ -2,14 +2,16 @@
 // localhost:333/users?id={user_id}
 import 'dotenv/config'
 import http from 'http'
-import { pipeline } from 'stream/promises'
 
 import logger from '@common/logger'
+import Routes, { RequestHandlerResponse }  from '@core/routes'
+import HTTPPipeline from '@core/pipeline'
 
 const APP_NAME = process.env.APP_NAME
 const PORT = process.env.PORT || 3333
+const ENDPOINT_DEAFULT_MESSAGE = "I'm alive!"
 
-const handlerStart = () => console.log(
+const handlerStart = () => logger.info(
   `> Listening server on port ${PORT}`
 )
 
@@ -17,29 +19,35 @@ async function handlerRequest(
   request: http.IncomingMessage,
   response: http.ServerResponse
 ) {
-  if (request.method) {
-    if (request.url.includes('/users'))
-      logger.info('> Access endpoint GET /users')
-    if (request.url.includes('/extra-works'))
-      logger.info('> Access endpoint GET extra-works')
+  const extraWorkController = new class {
+    async *index(source:  http.IncomingMessage): RequestHandlerResponse {
+      logger.info(`> Endpoint ${source.method} "${source.url}"`)
+      logger.info('> Access method: ExtraWorkController.index')
+      for await (const data of source) {
+        yield data
+      }
+    }
   }
 
-  await pipeline(
-    request,
-    async function *(source: any) {
-      source.setEncoding('utf8')
+  const routes = Routes.create()
 
-      for await (const data of source) {
-        console.log(data)
-      }
+  routes.post('/dry', extraWorkController.index)
+  function *notImplementation(message: string) {
+    yield message
+  }
+  routes.get('/', notImplementation.bind(null, ENDPOINT_DEAFULT_MESSAGE))
 
-      response.end("I'm alive!")
-    },
-    response
+  const httpPipeline = new HTTPPipeline(
+    routes
   )
+  
+  await httpPipeline
+    .run(request, response)
 }
 
-logger.info(`> Starting application: ${APP_NAME}`)
+logger.info(
+  `> Starting application: ${APP_NAME}`
+)
 
 http
   .createServer(handlerRequest)
